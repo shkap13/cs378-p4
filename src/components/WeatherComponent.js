@@ -2,8 +2,19 @@ import React, {useState, useEffect} from 'react';
 import './WeatherComponent.css';
 
 const WeatherFetchingComponent = ({latitude, longitude}) => {
+    // console.log("in weath, lat is:", latitude);
+    // console.log("in weath, long is: ", longitude);
     let lat = latitude;
     let longt = longitude;
+    let should_run = true;
+
+    if(lat < -90 || lat > 90){
+        should_run = false;
+    }
+    if(longt <= -180 || longt >= 180){
+        should_run = false;
+    }
+
     let url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${longt}&hourly=temperature_2m&temperature_unit=fahrenheit&timezone=America%2FChicago&forecast_days=1`;
     // console.log("url is: " + url);
     const [temp_data, setTempData] = useState(null);
@@ -11,20 +22,29 @@ const WeatherFetchingComponent = ({latitude, longitude}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try{
-                const response = await fetch(url);
-                const response_json = await response.json();
-                setTempData(response_json.hourly.temperature_2m);
-                // console.log('response_json: ', response_json.hourly.temperature_2m[0]);
-                // console.log('temp_data', temp_data);
-            }
-            catch (err){
-                console.log('there was an error', err);
+            if(should_run){
+                try{
+                    const response = await fetch(url);
+                    const response_json = await response.json();
+                    // console.log('response_json: ', response_json.hourly.temperature_2m[0]);
+                    setTempData(response_json.hourly.temperature_2m);
+                    // console.log('temp_data', temp_data);
+                }
+                catch (err){
+                    console.log('no city with this longitude and latitude found', err);
+                }
             }
         };
 
         fetchData();
     }, [url]);
+
+    if(lat < -90 || lat > 90){
+        return <div> Sorry, this latitude is invalid </div>
+    }
+    if(longt <= -180 || longt >= 180){
+        return <div> Sorry, this longitude is invalid </div>
+    }
 
     if(temp_data == null){
         return <div> LOADING... ONE MOMENT PLEASE</div>

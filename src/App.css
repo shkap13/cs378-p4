@@ -2,3 +2,25 @@
   Style your elements by creating CSS classes here.
   Below, you can see an example of a class called "menu" that changes the color of the text to blue. Modify according to your needs.
 */
+
+.input_box{
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+.done_button{
+  margin-left: 5%;
+  background-color: green;
+}
+
+.centered-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10 px;
+}

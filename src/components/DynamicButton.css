@@ -1,0 +1,12 @@
+.centered-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button{
+    padding: 3%;
+    margin: 2%;
+    font-size: small;
+    margin-top: auto;
+    background-color: azure;
+}

@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import './DynamicButton.css';
 
-const DynamicButton = ({button_data}) => {
-    const handle_click = (id, lat, longt) => {
-
-    }
+const DynamicButton = ({lat, long, onClick}) => {
+    return (
+        <div className='centered-container'>
+            <button className="button" onClick={onClick}>{lat}, {long}</button>
+        </div>
+    );
 };
 
 export default DynamicButton;
