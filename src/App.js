@@ -14,8 +14,8 @@ function App() {
     {id: 3, long: -96.80, lat: 32.77}
   ]);
 
-  const [long, setLong] = useState(-97.7333);
-  const [lat, setLat] = useState(30.2672);
+  const [long, setLong] = useState(-97.73);
+  const [lat, setLat] = useState(30.26);
 
   const handle_city_click = (new_lat, new_long) => {
     setLat(new_lat);
